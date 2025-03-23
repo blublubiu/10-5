@@ -6,7 +6,7 @@ module pipe_stage(
     output in_rdy,
     input [15:0]in_data,
 
-    output out_vld,
+    output reg out_vld,
     input out_rdy,
     output reg [15:0]out_data
 
