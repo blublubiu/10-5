@@ -36,4 +36,15 @@ Block diagram：
 
 代码：pipe_stage.v
 
-二、
+二、AXI master和slave进行数据传递的时候，会出现setup/hold不满足的情况，此时不能通过简单的打拍处理，需要增加register slice。
+按照不同信号路径，可以划分为：
+①forward registered:对vld和payload信号打拍，payload可以是data或者cmd
+②backward registered:对ready打拍
+③full registered:采用乒乓buffer格式，同时对vld、ready和payload信号打拍
+④pass through
+
+- forward registered:in_vld && in_rdy握手(in_data => out_data 同时 out_vld => in_vld).in_rdy在out_ready或者没有正在传数据~out_valid的时候有效。
+  代码：
+- backward registered：由于存在下级还没ready的情况，所以也要寄存valid和payload信号。此时ready可以直接打拍，但是针对vld和payload在in_vld && (~out_rdy)的情况需要被寄存，
+- 
+
