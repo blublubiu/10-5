@@ -8,7 +8,7 @@ module pipe_stage(
 
     output out_vld,
     input out_rdy,
-    output [15:0]out_data
+    output reg [15:0]out_data
 
 );
 assign in_rdy = (~out_vld) || out_rdy;
