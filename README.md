@@ -44,7 +44,7 @@ Block diagram：
 ④pass through
 
 - forward registered:in_vld && in_rdy握手(in_data => out_data 同时 out_vld => in_vld).in_rdy在out_ready或者没有正在传数据~out_valid的时候有效。
-  代码：
+  代码：forward_slice.v
 - backward registered：由于存在下级还没ready的情况，所以也要寄存valid和payload信号。此时ready可以直接打拍，但是针对vld和payload在in_vld && (~out_rdy)的情况需要被寄存，
 - 
 
